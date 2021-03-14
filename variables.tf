@@ -39,3 +39,15 @@ variable "kms_key_create" {
   type        = bool
   default     = true
 }
+
+# Bucket Policy
+variable "policy_document" {
+  description = "A JSON string containing a bucket policy which will be applied to the bucket"
+  default     = ""
+}
+
+variable "grant_caller_access" {
+  description = "When set to true, this will create a bucket policy that gives the bucket owner admin access"
+  type        = bool
+  default     = true
+}
