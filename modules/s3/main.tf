@@ -6,13 +6,6 @@ terraform {
     }
   }
 }
-
-provider "aws" {
-  region  = "us-east-1"
-  profile = "default"
-}
-
-
 resource "aws_kms_key" "mykey" {
   count = var.kms_key_create ? 1 : 0
   description             = "This key is used to encrypt bucket objects"
