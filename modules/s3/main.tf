@@ -8,13 +8,13 @@ terraform {
 }
 resource "aws_kms_key" "mykey" {
   count = var.kms_key_create ? 1 : 0
-  description             = "This key is used to encrypt bucket objects"
+  description = "This key is used to encrypt bucket objects"
 }
 
 resource "aws_s3_bucket" "b" {
-  count = var.create ? 1 : 0
+  count               = var.create ? 1 : 0
 
-  bucket = var.bucket-name
+  bucket              = var.bucket-name
   acl                 = var.acl
   force_destroy       = var.force_destroy
 

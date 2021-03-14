@@ -37,7 +37,7 @@ variable "glacier_days" {
 variable "kms_key_create" {
   description = "Controls kms key creation"
   type        = bool
-  default     = true
+  default     = false
 }
 
 # Bucket Policy
