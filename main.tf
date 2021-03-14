@@ -13,9 +13,28 @@ provider "aws" {
 }
 
 
+resource "aws_kms_key" "mykey" {
+  count = var.kms_key_create ? 1 : 0
+  description             = "This key is used to encrypt bucket objects"
+}
+
 resource "aws_s3_bucket" "b" {
+  count = var.create ? 1 : 0
+
   bucket = var.bucket-name
-  acl    = "private"
+  acl                 = var.acl
+  force_destroy       = var.force_destroy
+
+  server_side_encryption_configuration {
+
+      rule {
+        apply_server_side_encryption_by_default {
+          sse_algorithm     =  "aws:kms"
+          kms_master_key_id = var.kms_key_create ?  aws_kms_key.mykey[0].arn : ""
+        
+      }
+    }
+}
 
   lifecycle_rule {
     enabled = true
