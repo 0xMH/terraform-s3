@@ -2,12 +2,11 @@ provider "aws" {
   region  = "us-east-1"
   profile = "default"
 }
-
 module "s3_custom_policy" {
   source = "../../modules/s3"
   create = true
 
-  bucket-name = "unique-bucket-name-basic"
+  bucket-name = "random-bucket-name-sxbsssvkm"
   acl  = "public-read"
   force_destroy = "true"
 
